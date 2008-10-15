@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="smallface" transaction-type="JTA">
+	  <jta-data-source>java:/MySqlDS</jta-data-source>
+		<class>com.zuhlke.smallface.ejbs.User</class>
+  	<class>com.zuhlke.smallface.ejbs.Post</class>
+  	<properties>
+  	  <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+  	  <property name="dialect" value="org.hibernate.dialect.MySQLDialect" />
+  	  <!--  <property name="hibernate.show_sql" value="true"/>
+  	  <property name="hibernate.format.sql" value="true"/> -->
+  	</properties>
+	</persistence-unit>
+</persistence>

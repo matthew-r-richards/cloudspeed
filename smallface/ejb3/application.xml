@@ -1,0 +1,12 @@
+<application>
+   <display-name>Smallface</display-name>
+   <module>
+      <web>
+         <web-uri>smallface.war</web-uri>
+         <context-root>/smallface</context-root>
+      </web>
+   </module>
+   <module>
+      <ejb>smallface.jar</ejb>
+   </module>
+</application>
