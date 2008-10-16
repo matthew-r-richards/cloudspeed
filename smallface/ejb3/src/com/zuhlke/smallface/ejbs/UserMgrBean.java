@@ -64,6 +64,8 @@ public class UserMgrBean implements UserMgr {
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void addFriend(String user1, String user2) throws UserNotFoundException {
+	if (user1.equals(user2)) return; // adding self doesn't count
+	
 	User u1 = findUser(user1);
 	User u2 = findUser(user2);
 	u1.addFriend(u2);
@@ -71,7 +73,7 @@ public class UserMgrBean implements UserMgr {
     
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public List<Post> getAllFriendsPosts(String userName) {
-	return em.createQuery("SELECT p " +
+	return em.createQuery("SELECT DISTINCT p " +
 			"FROM User u JOIN u.friends f JOIN f.posts p JOIN p.user o " +
 			"WHERE u.email=?1 OR o.email = ?2")
 			.setParameter(1, userName)
