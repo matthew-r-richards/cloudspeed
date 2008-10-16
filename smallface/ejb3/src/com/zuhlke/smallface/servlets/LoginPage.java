@@ -20,12 +20,6 @@ public class LoginPage extends HttpServlet {
 	displayLogin(resp, null);
     }
     
-    @Override
-    public void init() throws ServletException {
-	UserMgrFactory.getUserMgr().createUser(new User("no@way.com", "123"));
-//	printUsers();	
-    }
-
     private void printUsers() {
 	Collection<User> allUsers = UserMgrFactory.getUserMgr().getAllUsers();
 	for (Object element : allUsers) {
