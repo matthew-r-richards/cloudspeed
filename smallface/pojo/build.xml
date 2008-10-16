@@ -1,0 +1,30 @@
+<project default="deploy">
+	<property name="jboss.home" value="C:\java\jboss-5.0.0.CR2"/>
+	<property name="jboss.configuration" value="default"/>
+	<property name="deploy.dir" value="${jboss.home}/server/${jboss.configuration}/deploy/"/>	
+	
+	<target name="packageJar">
+		<jar destfile="smallface.jar">
+			<fileset dir="bin/" includes="com/zuhlke/smallface/ejbs/**"/>
+			<fileset dir="bin/" includes="com/zuhlke/smallface/common/**"/>
+			<fileset dir="bin/" includes="com/zuhlke/smallface/pojos/**"/>
+			<metainf file="persistence.xml"></metainf>
+		</jar>
+	</target>
+	
+	<target name="packageWar">
+		<war destfile="smallface.war" webxml="web.xml">
+			<classes dir="bin/" includes="com/zuhlke/smallface/servlets/**"/>
+		</war>
+	</target>
+	
+	<target name="packageEar" depends="packageJar, packageWar">
+		<ear destfile="smallface.ear" appxml="application.xml">
+			<fileset dir="." includes="*.jar,*.war"/>
+		</ear>
+	</target>
+	
+	<target name="deploy" depends="packageEar">
+		<copy file="smallface.ear" todir="${deploy.dir}"></copy>
+	</target>
+</project>
