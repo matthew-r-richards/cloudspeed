@@ -1,0 +1,24 @@
+	<p>Welcome, #{@user}. You have #{@user_friendcount} friends.</p>
+    <?r if @posts.empty? ?>
+      <p>No Posts</p>
+    <?r else ?>
+      <table>
+		<?r @posts.each do |date, author, content| ?>
+		  <tr>
+		    <td class="date" > #{date}  </td>
+		    <td class="post"> #{author} said #{content} </td>
+		  </tr>
+		<?r end ?>
+      </table>
+    <?r end ?>
+    <form method="POST">
+        <input type="text" name="postContent"/>
+        <input type="submit" name="post" value="New Post">
+    </form>
+    <form method="POST">
+        <input type="text" name="friendName"/>
+        <input type="submit" name="addFriend" value="Add Friend">
+    </form>
+    <form method="POST">
+    	<input type="submit" name="logout" value="Logout">
+    </form>
