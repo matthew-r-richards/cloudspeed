@@ -1,0 +1,22 @@
+<h1>Register new user</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= text_field_tag :name %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= text_field_tag :password %>
+  </p>
+  <p>
+    <%= f.submit "Register" %>
+  </p>
+   <p>
+    <%= f.submit "Login" %>
+  </p>
+<% end %>
+
+

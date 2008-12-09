@@ -1,0 +1,21 @@
+<h1>Home page for <%= @user.name %>. </h1>
+<p>You have <%= @user.friendships.length %> friends, you looser!
+</p>
+
+<% form_tag (:action => "addfriend")  do %>
+  <p>
+    <label for="friend">Friend:<br />
+    <%= text_field_tag :friend, params[:friend] %>
+  </p>
+  <p>
+    <%= submit_tag "Add Friend" %>
+  </p>
+  
+<% end %>
+<% form_tag (:action => "logout")  do %>
+  <p>
+    <%= submit_tag "Logout" %>
+  </p>
+  
+<% end %>
+
