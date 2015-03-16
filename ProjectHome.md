@@ -1,0 +1,2 @@
+The purpose of this project is to evaluate the performance of cloud computing platforms and various technologies for building highly scalable web applications.
+There will be one sample application, that will be implemented  using several technology stacks and deployed on different cloud computing platforms. Benchmarks will be performed to compare the technology stacks and the cloud computing platforms.
