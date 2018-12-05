@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "SMALLFACEUSER")
 public class User implements Serializable {
     @Id
     private String email;
