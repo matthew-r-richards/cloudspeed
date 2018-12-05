@@ -72,4 +72,8 @@ public class SmallfaceService {
     private Supplier<RuntimeException> userNotFound(String userEmail1) {
         return () -> new RuntimeException("user " + userEmail1 + " not found");
     }
+
+    public long getNumberOfUsers() {
+        return users.count();
+    }
 }

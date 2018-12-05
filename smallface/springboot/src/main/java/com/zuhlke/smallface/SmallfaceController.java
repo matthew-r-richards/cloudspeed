@@ -25,10 +25,19 @@ public class SmallfaceController {
         this.smallface = smallface;
     }
 
+    @GetMapping("/")
+    public String hello() {
+        return "Smallface is running";
+    }
+
+    @GetMapping("/stats")
+    public String stats() {
+        return "#users: " + smallface.getNumberOfUsers();
+    }
+
     @PostMapping("/register")
     public void register(@RequestParam("email") String email, @RequestParam("password") String password) {
         smallface.registerUser(email, password);
-//        System.out.println("registered " + email);
     }
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)

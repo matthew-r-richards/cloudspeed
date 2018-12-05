@@ -1,4 +1,0 @@
-- deploy app on AWS/GCP
-- set up proper DB on AWS/GCP
-- deploy JMeter cluster on AWS/GCP
-- alternative persistence (Neo4j)
