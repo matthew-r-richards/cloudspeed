@@ -22,7 +22,6 @@ steps:
   dir: 'smallface/springboot'
   args: ['clean','install','-B','-DskipTests']
 - name: 'gcr.io/cloud-builders/docker'
-  dir: 'smallface/springboot'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/cloudspeed', '.']
 images: ['gcr.io/$PROJECT_ID/cloudspeed']
 substitutions:
