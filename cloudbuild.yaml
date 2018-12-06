@@ -3,27 +3,55 @@
 steps:
 - name: 'gcr.io/${PROJECT_ID}/terraform'
   dir: 'terraform'
-  args: ['init',
-    '-backend-config=project=${PROJECT_ID}',
-    '-backend-config=bucket=${_BUCKET}']
+  args:
+   - 'init'
+   - '-backend-config=project=${PROJECT_ID}'
+   - '-backend-config=bucket=${_BUCKET}'
   env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+  - "TF_VAR_project-name=${PROJECT_ID}"
 - name: 'gcr.io/${PROJECT_ID}/terraform'
   dir: 'terraform'
-  args: ['plan']
+  args:
+  - 'plan'
   env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+  - "TF_VAR_project-name=${PROJECT_ID}"
 - name: 'gcr.io/${PROJECT_ID}/terraform'
   dir: 'terraform'
-  args: ['apply', '-auto-approve']
+  args:
+  - 'apply'
+  - '-auto-approve'
   env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+  - "TF_VAR_project-name=${PROJECT_ID}"
 - name: 'gcr.io/cloud-builders/mvn'
   dir: 'smallface/springboot'
-  # had to skip tests because I kept getting an error about surefire VM being forked
-  args: ['clean','package','-B','-DskipTests']
+  args:
+  - 'clean'
+  - 'package'
+  - '-B'
+  - '-DskipTests' # had to skip tests because I kept getting an error about surefire forked VM crashing
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/cloudspeed', '.']
-images: ['gcr.io/$PROJECT_ID/cloudspeed']
+  args:
+  - 'build'
+  - '--tag=gcr.io/$PROJECT_ID/cloudspeed'
+  - '.'
+- name: 'gcr.io/${PROJECT_ID}/helm'
+  args:
+  - init
+- name: 'gcr.io/${PROJECT_ID}/helm'
+  args:
+  - upgrade
+  - --name
+  - cloudspeed
+  - --namespace
+  - cloudspeed
+  - ./helm
+  - --set
+  - appImage=gcr.io/$PROJECT_ID/cloudspeed
+  - --install
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cloudspeed-cluster'
+images:
+- 'gcr.io/$PROJECT_ID/cloudspeed'
 substitutions:
     _BUCKET: cloud-topic-team
