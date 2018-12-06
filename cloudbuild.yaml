@@ -18,5 +18,12 @@ steps:
   args: ['apply', '-auto-approve']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
+- name: 'gcr.io/cloud-builders/mvn'
+  dir: 'smallface/springboot'
+  args: ['clean install']
+- name: 'gcr.io/cloud-builders/docker'
+  dir: 'smallface/springboot'
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/cloudspeed', '.']
+images: ['gcr.io/$PROJECT_ID/cloudspeed']
 substitutions:
     _BUCKET: cloud-topic-team
