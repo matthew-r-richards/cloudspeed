@@ -20,7 +20,7 @@ steps:
     - "TF_VAR_project-name=${PROJECT_ID}"
 - name: 'gcr.io/cloud-builders/mvn'
   dir: 'smallface/springboot'
-  args: ['clean install']
+  args: ['clean','package']
 - name: 'gcr.io/cloud-builders/docker'
   dir: 'smallface/springboot'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/cloudspeed', '.']
