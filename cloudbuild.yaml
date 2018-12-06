@@ -37,13 +37,13 @@ steps:
 - name: 'gcr.io/${PROJECT_ID}/helm'
   args:
   - upgrade
+  - --install
   - cloudspeed
   - --namespace
   - cloudspeed
   - ./helm
   - --set
   - appImage=gcr.io/$PROJECT_ID/cloudspeed
-  - --install
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cloudspeed-cluster'
