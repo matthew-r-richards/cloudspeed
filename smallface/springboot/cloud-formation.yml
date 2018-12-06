@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: phud EKS template
+Resources:
+  PhudEksCluster:
+    Type: "AWS::EKS::Cluster"
+    Properties:
+      Name: "phud"
+      Version: "1.10"
+      RoleArn: "arn:aws:iam::870594606895:role/phud-eks"
+      ResourcesVpcConfig:
+        SecurityGroupIds: ["sg-0b2ba41d84f2e6ca7"]
