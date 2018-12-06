@@ -37,7 +37,6 @@ steps:
 - name: 'gcr.io/${PROJECT_ID}/helm'
   args:
   - upgrade
-  - --name
   - cloudspeed
   - --namespace
   - cloudspeed
