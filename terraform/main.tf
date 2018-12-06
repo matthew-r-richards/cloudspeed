@@ -1,0 +1,21 @@
+provider "google" {
+  project     = "${var.project-name}"
+  region      = "${var.region}"
+}
+
+// Create a new instance
+resource "google_container_cluster" "cloudspeed" {
+  name               = "cloudspeed-cluster"
+  zone               = "${var.region}"
+  initial_node_count = "2"
+
+  node_config {
+    disk_size_gb  = "10"
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
