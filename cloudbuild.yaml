@@ -47,6 +47,8 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cloudspeed-cluster'
+  - 'TILLERLESS=true'
+  - 'TILLER_NAMESPACE=cloudspeed-tiller'
 images:
 - 'gcr.io/$PROJECT_ID/cloudspeed'
 substitutions:
