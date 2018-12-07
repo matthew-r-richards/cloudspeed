@@ -19,3 +19,12 @@ spec:
         image: {{ .Values.appImage }}
         ports:
         - containerPort: {{ .Values.appPort }}
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://{{ .Values.postgresHost }}
+        - name: SPRING_DATASOURCE_USERNAME
+          value: {{ .Values.postgresUsername }}
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: {{ .Values.postgresPassword }}
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod

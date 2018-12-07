@@ -1,27 +1,27 @@
 # In this directory, run the following command to build this builder.
 # $ gcloud builds submit . --config=cloudbuild.yaml --substitutions _BUCKET='<bucket name>'
 steps:
-- name: 'gcr.io/${PROJECT_ID}/terraform'
-  dir: 'terraform'
-  args:
-   - 'init'
-   - '-backend-config=project=${PROJECT_ID}'
-   - '-backend-config=bucket=${_BUCKET}'
-  env:
-  - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'gcr.io/${PROJECT_ID}/terraform'
-  dir: 'terraform'
-  args:
-  - 'plan'
-  env:
-  - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'gcr.io/${PROJECT_ID}/terraform'
-  dir: 'terraform'
-  args:
-  - 'apply'
-  - '-auto-approve'
-  env:
-  - "TF_VAR_project-name=${PROJECT_ID}"
+#- name: 'gcr.io/${PROJECT_ID}/terraform'
+#  dir: 'terraform'
+#  args:
+#   - 'init'
+#   - '-backend-config=project=${PROJECT_ID}'
+#   - '-backend-config=bucket=${_BUCKET}'
+#  env:
+#  - "TF_VAR_project-name=${PROJECT_ID}"
+#- name: 'gcr.io/${PROJECT_ID}/terraform'
+#  dir: 'terraform'
+#  args:
+#  - 'plan'
+#  env:
+#  - "TF_VAR_project-name=${PROJECT_ID}"
+#- name: 'gcr.io/${PROJECT_ID}/terraform'
+#  dir: 'terraform'
+#  args:
+#  - 'apply'
+#  - '-auto-approve'
+#  env:
+#  - "TF_VAR_project-name=${PROJECT_ID}"
 - name: 'gcr.io/cloud-builders/mvn'
   dir: 'smallface/springboot'
   args:
@@ -44,6 +44,12 @@ steps:
   - ./helm
   - --set
   - appImage=gcr.io/$PROJECT_ID/cloudspeed
+  - --set
+  - postgresHost=${_PGHOST}
+  - --set
+  - postgresUsername=${_PGUSER}
+  - --set
+  - postgresPassword=${_PGPASS}
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cloudspeed-cluster'
