@@ -3,4 +3,4 @@ appPort: 5000
 appCpuRequest: 100m
 appTargetCpuRequestPercent: 50
 appMinReplicas: 1
-appMaxReplicas: 5
+appMaxReplicas: 10
