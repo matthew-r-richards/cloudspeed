@@ -21,7 +21,7 @@ spec:
         - containerPort: {{ .Values.appPort }}
         env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://{{ .Values.postgresHost }}
+          value: jdbc:postgresql://{{ .Values.postgresHost }}/{{ .Values.postgresDatabaseName }}
         - name: SPRING_DATASOURCE_USERNAME
           value: {{ .Values.postgresUsername }}
         - name: SPRING_DATASOURCE_PASSWORD
