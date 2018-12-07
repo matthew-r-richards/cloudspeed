@@ -47,7 +47,7 @@ steps:
   - --set
   - postgresHost=${_PGHOST}
   - --set
-  - postgresDatabaseName=${_PGDB}
+  - postgresDatabaseName=${_PGDB} 
   - --set
   - postgresUsername=${_PGUSER}
   - --set
