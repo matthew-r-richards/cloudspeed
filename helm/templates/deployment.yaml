@@ -28,3 +28,6 @@ spec:
           value: {{ .Values.postgresPassword }}
         - name: SPRING_PROFILES_ACTIVE
           value: prod
+        resources:
+          requests:
+            cpu: {{ .Values.appCpuRequest }}
