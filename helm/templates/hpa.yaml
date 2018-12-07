@@ -9,10 +9,4 @@ spec:
     name: {{ .Values.appName }}-deployment
   minReplicas: {{ .Values.appMinReplicas }}
   maxReplicas: {{ .Values.appMaxReplicas }}
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: {{ .Values.appTargetCpuRequestPercent }}
+  targetCPUUtilizationPercentage: {{ .Values.appTargetCpuRequestPercent }}
